@@ -1,34 +1,20 @@
 package beans;
 
-import java.io.Serializable;
-
-import javax.annotation.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedBean;
 
 @SuppressWarnings("deprecation")
 @ManagedBean
-@ViewScoped
-public class User implements Serializable  {
-
-	public String test = "HI";
-	
-	
-	public String getTest() {
-		return test;
-	}
+public class User {
 
 
-	public void setTest(String test) {
-		this.test = test;
-	}
 	private String firstName;
 	private String lastName;
 	
 
 	public User() {
 
-		this.setFirstName("firstName");
-		this.setLastName("lastName");
+		this.setFirstName("Dominic");
+		this.setLastName("Riccetti");
 	}
 	
 	
