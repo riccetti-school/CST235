@@ -16,6 +16,8 @@ public class FormController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
 		
+		System.out.println("firstName: " + user.getFirstName() + " lastName: " + user.getLastName());
+		
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
 		return "TestResponse.xhtml";
 	}
