@@ -6,8 +6,11 @@
 
 <h:body>
 
-	<div class="col-sm-6">
+	<div class="row align-items-start">
+
+	<div class="col-6">
 		<h:form class="form">
+			<h1>Register</h1>
 			<label class="label-form">First Name:</label>
 			<h:inputText type="text" value="#{user.firstName}" class="form-control"/>
 			<br/>
@@ -29,6 +32,21 @@
 			<h:commandButton action="#{formController.onSubmit()}" value="Submit" class="btn btn-primary"/>
 		</h:form>
 		<h:messages/>
+	</div>
+	
+	<div class="col-6>">
+		<h:form class="form">
+			<h1>Login</h1>
+			<label class="form-label">Email:</label>
+			<h:inputText type="text" value="#{user.email}" class="form-control"/>
+			<br/>
+			<label class="form-label">Password:</label>
+			<h:inputSecret type="password" value="#{user.password}" class="form-control" />
+			<br/>										
+			<h:commandButton action="#{formController.onLogin()}" value="Submit" class="btn btn-primary"/>
+		</h:form>	
+	</div>
+	
 	</div>
 
 </h:body>
