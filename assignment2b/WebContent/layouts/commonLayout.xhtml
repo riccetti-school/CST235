@@ -6,27 +6,34 @@
    xmlns:h = "http://java.sun.com/jsf/html"
    xmlns:ui = "http://java.sun.com/jsf/facelets"> 
    
-   <h:head></h:head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+   
+   <h:head><title>Milestone 2</title></h:head>
    <h:body> 
-      <div style = "border-width:2px; border-color:green; border-style:solid;">
+      
+      <div class="container">
          <ui:insert name = "header" >
             <ui:include src = "/layouts/commonHeader.xhtml" />
          </ui:insert> 
       </div>
+      
       <br/>
    
-      <div style = "border-width:2px; border-color:black; border-style:solid;">
+      <div class="container">
          <ui:insert name = "content" >
             <ui:include src = "/layouts/commonContent.xhtml" />
          </ui:insert>    
       </div>
+      
       <br/>
       
-      <div style = "border-width:2px; border-color:red; border-style:solid;">
+      <div class="container">
          <ui:insert name = "footer" >
             <ui:include src = "/layouts/commonFooter.xhtml" />
          </ui:insert>
-      </div>   
+      </div>
+         
    
    </h:body>
 </html>
