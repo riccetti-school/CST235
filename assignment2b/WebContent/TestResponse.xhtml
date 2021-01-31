@@ -11,6 +11,29 @@
         </style>
 </h:head>
 <h:body>
-	Welcome #{user.firstName} #{user.lastName}
+	Hello #{user.firstName} #{user.lastName}. Your orders are:
+	<br/>
+	<h:dataTable value="#{orders.orders}" var="order">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{order.orderNumber}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			#{order.productName}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Price</f:facet>
+			#{order.price}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Quantity</f:facet>
+			#{order.quantity}
+		</h:column>						
+		
+	</h:dataTable>
 </h:body>
 </html>
