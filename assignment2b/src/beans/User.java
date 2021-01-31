@@ -14,13 +14,63 @@ public class User {
 	private String firstName;
 	private String lastName;
 	
+	private String email;
+	private String phone;
+	private String address;
+	private String password;
 
 	public User() {
-
-		this.setFirstName("Dominic");
-		this.setLastName("Riccetti");
 	}
 	
+	@NotNull
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	
+	public String getPhone() {
+		return phone;
+	}
+
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	@NotNull
+	@Size(min=6)
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
 	@NotNull
 	@Size(min=5,max=15)
 	public String getFirstName() {

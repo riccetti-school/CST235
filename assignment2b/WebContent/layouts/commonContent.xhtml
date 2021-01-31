@@ -6,12 +6,30 @@
 
 <h:body>
 
-	<h:form>
-		<h:inputText type="text" value="#{user.firstName}"/>
-		<h:inputText type="text" value="#{user.lastName}"/>
-		<h:commandButton action="#{formController.onSubmit()}" value="Submit"/>
-	</h:form>
-	<h:messages/>
+	<div class="col-sm-6">
+		<h:form class="form">
+			<label class="label-form">First Name:</label>
+			<h:inputText type="text" value="#{user.firstName}" class="form-control"/>
+			<br/>
+			<label class="label-form">Last Name:</label>
+			<h:inputText type="text" value="#{user.lastName}" class="form-control"/>
+			<br/>
+			<label class="form-label">Email:</label>
+			<h:inputText type="text" value="#{user.email}" class="form-control"/>
+			<br/>
+			<label class="form-label">Address:</label>
+			<h:inputText type="text" value="#{user.address}" class="form-control"/>
+			<br/>
+			<label class="form-label">Phone Number:</label>
+			<h:inputText type="text" value="#{user.phone}" class="form-control"/>
+			<br/>
+			<label class="form-label">Password:</label>
+			<h:inputSecret type="password" value="#{user.password}" class="form-control" />
+			<br/>										
+			<h:commandButton action="#{formController.onSubmit()}" value="Submit" class="btn btn-primary"/>
+		</h:form>
+		<h:messages/>
+	</div>
 
 </h:body>
 </html>
