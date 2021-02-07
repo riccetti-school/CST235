@@ -16,8 +16,9 @@ import services.DataService;
 @ManagedBean
 public class FormController implements Serializable {
 
-	@EJB
-	public OrdersBusinessService S;
+
+	@Inject
+	public OrdersBusinessInterface s;
 	
 	public String onSubmit () {
 		
@@ -36,7 +37,7 @@ public class FormController implements Serializable {
 	
 	public String onLogin() {
 		
-		S.test();
+		s.test();
 		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
