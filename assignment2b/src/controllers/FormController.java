@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import beans.Order;
 import beans.User;
+import business.MyTimerService;
 import business.OrdersBusinessInterface;
 import business.OrdersBusinessService;
 import services.DataService;
@@ -22,6 +23,9 @@ public class FormController implements Serializable {
 	@Inject
 	public OrdersBusinessInterface s;
 
+	@EJB
+	public MyTimerService timer;
+	
 	public List<Order> getOrders(){
 		return s.getOrders();
 	}
@@ -43,6 +47,7 @@ public class FormController implements Serializable {
 	
 	public String onLogin() {
 		
+		timer.setTimer(100);
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
