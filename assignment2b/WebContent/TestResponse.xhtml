@@ -22,7 +22,7 @@
 	
 	<div class="container">
 	
-	<h:dataTable value="#{orders.orders}" var="order" class="table">
+	<h:dataTable value="#{formController.getOrders()}" var="order" class="table">
 		<h:column>
 			<f:facet name="header">ID</f:facet>
 			#{order.orderNumber}

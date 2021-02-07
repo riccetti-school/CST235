@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import beans.Order;
 import beans.User;
 import business.OrdersBusinessInterface;
 import business.OrdersBusinessService;
@@ -19,6 +21,10 @@ public class FormController implements Serializable {
 
 	@Inject
 	public OrdersBusinessInterface s;
+
+	public List<Order> getOrders(){
+		return s.getOrders();
+	}
 	
 	public String onSubmit () {
 		
@@ -36,8 +42,6 @@ public class FormController implements Serializable {
 	}
 	
 	public String onLogin() {
-		
-		s.test();
 		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
