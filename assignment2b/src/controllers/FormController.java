@@ -15,6 +15,7 @@ import business.LoginService;
 import business.MyTimerService;
 import business.OrdersBusinessInterface;
 import business.OrdersBusinessService;
+import business.RegistrationService;
 import services.DataService;
 
 @ManagedBean
@@ -30,6 +31,10 @@ public class FormController implements Serializable {
 	@EJB
 	public LoginService login;
 	
+	@EJB
+	public RegistrationService reg;
+	
+	
 	public List<Order> getOrders(){
 		return s.getOrders();
 	}
@@ -41,9 +46,7 @@ public class FormController implements Serializable {
 		
 		System.out.println("firstName: " + user.getFirstName() + " lastName: " + user.getLastName());
 		
-		// register this user
-		DataService ds = new DataService();
-		ds.save(user);
+		reg.save(user);
 		
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
 		return "TestResponse.xhtml";
