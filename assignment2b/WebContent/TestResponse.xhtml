@@ -15,12 +15,35 @@
         </style>
 </h:head>
 <h:body>
+
+
+
 	<h2 style="padding:20px;">Hello #{user.firstName} #{user.lastName}. Your orders are:</h2>
 	<br/>
 	<br/>
 	<br/>
 	
 	<div class="container">
+	
+	<div class="row align-items-start">
+
+		<h:form class="form">
+			<h1>New Product</h1>
+			<label class="label-form">number:</label>
+			<h:inputText type="text" value="#{order.orderNumber}" class="form-control"/>
+			<br/>
+			<label class="label-form">Name:</label>
+			<h:inputText type="text" value="#{order.productName}" class="form-control"/>
+			<br/>
+			<label class="form-label">Quantity:</label>
+			<h:inputText type="text" value="#{order.quantity}" class="form-control"/>
+			<br/>
+			<h:commandButton action="#{formController.newProduct()}" value="Submit" class="btn btn-primary"/>
+		</h:form>
+
+	</div>	
+	
+	<br/><br/><br/>
 	
 	<h:dataTable value="#{formController.getOrders()}" var="order" class="table">
 		<h:column>

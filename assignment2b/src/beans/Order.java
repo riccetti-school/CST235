@@ -1,5 +1,12 @@
 package beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@ManagedBean
+@ViewScoped
 public class Order {
 
 	private String orderNumber = "";
@@ -7,6 +14,10 @@ public class Order {
 	private float price = 0.0f;
 	private int quantity = 0;
 	
+	
+	public Order() {
+		
+	}
 	
 	public Order(String orderNumber, String productName, float price, int quantity) {
 		this.setOrderNumber(orderNumber);

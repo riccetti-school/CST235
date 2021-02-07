@@ -9,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.graalvm.compiler.api.replacements.Snippet.VarargsParameter;
+
 import beans.Order;
 import beans.User;
 import business.LoginService;
@@ -37,6 +39,19 @@ public class FormController implements Serializable {
 	
 	public List<Order> getOrders(){
 		return s.getOrders();
+	}
+	
+	public String newProduct() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Order order = context.getApplication().evaluateExpressionGet(context, "#{order}", Order.class);
+		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
+		
+		List<Order> list = s.getOrders();
+		list.add(order);
+		s.setOrders(list);
+		
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
+		return "TestResponse.xhtml";		
 	}
 	
 	public String onSubmit () {
