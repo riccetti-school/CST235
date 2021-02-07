@@ -5,13 +5,18 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import beans.User;
+import business.OrdersBusinessInterface;
 import services.DataService;
 
 @ManagedBean
 public class FormController implements Serializable {
 
+	@Inject
+	private OrdersBusinessInterface orders;
+	
 	public String onSubmit () {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
