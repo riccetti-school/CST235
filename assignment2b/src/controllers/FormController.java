@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import beans.Order;
 import beans.User;
+import business.LoginService;
 import business.MyTimerService;
 import business.OrdersBusinessInterface;
 import business.OrdersBusinessService;
@@ -25,6 +26,9 @@ public class FormController implements Serializable {
 
 	@EJB
 	public MyTimerService timer;
+	
+	@EJB
+	public LoginService login;
 	
 	public List<Order> getOrders(){
 		return s.getOrders();
@@ -55,8 +59,7 @@ public class FormController implements Serializable {
 		System.out.println("onLogin :::: email: " + user.getEmail() + " password: " + user.getPassword());
 		
 		// register this user
-		DataService ds = new DataService();
-		if(ds.validate(user)) {
+		if(login.validate(user)) {
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
 			return "TestResponse.xhtml";		
 			
