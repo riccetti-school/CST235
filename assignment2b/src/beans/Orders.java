@@ -59,6 +59,35 @@ public class Orders {
 		
 	}
 	
+	public void insertOrder(Order order) {
+		
+		String stmt = "INSERT INTO  testapp.ORDERS(ORDER_NO, PRODUCT_NAME, PRICE, QUANTITY) VALUES('"+order.getOrderNumber()+"', '"+order.getProductName()+"', 25.00, "+order.getQuantity()+")";
+
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
+			System.out.println("Success!!");
+			
+			Statement s = conn.createStatement();
+			s.executeUpdate(stmt);
+			s.close();
+			
+		} catch (SQLException e) {
+			
+			System.out.println("Failure!! -- " + e.getMessage());
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+		
+	}
+	
 	public List<Order> getOrders() {
 		fillAllOrders();
 		return orders;
@@ -67,7 +96,5 @@ public class Orders {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	
-	
 	
 }

@@ -44,5 +44,10 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
 		// TODO Auto-generated method stub
 		orders = orders;
 	}
+	
+	@Override
+	public void insertOrder(Order order) {
+		new Orders().insertOrder(order);
+	}
 
 }

@@ -50,6 +50,7 @@
 			<f:facet name="header">DBID</f:facet>
 			#{order.id}
 		</h:column>
+		
 		<h:column>
 			<f:facet name="header">Product Number</f:facet>
 			#{order.orderNumber}
@@ -69,6 +70,12 @@
 			<f:facet name="header">Quantity</f:facet>
 			#{order.quantity}
 		</h:column>						
+
+		<h:column>
+			<f:facet name="header"></f:facet>
+			<h:link value="Delete" onclick=""/>
+		</h:column>		
+		
 		
 	</h:dataTable>
 

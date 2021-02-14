@@ -28,8 +28,8 @@ public class FormController implements Serializable {
 	@Inject
 	public OrdersBusinessInterface s;
 
-	@EJB
-	public MyTimerService timer;
+	//@EJB
+	//public MyTimerService timer;
 	
 	@EJB
 	public LoginService login;
@@ -46,9 +46,11 @@ public class FormController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Order order = context.getApplication().evaluateExpressionGet(context, "#{order}", Order.class);
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
-		
+
+		// add the order to the database
+		s.insertOrder(order);
+		// resend the list
 		List<Order> list = s.getOrders();
-		list.add(order);
 		s.setOrders(list);
 		
 		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
@@ -70,7 +72,7 @@ public class FormController implements Serializable {
 	
 	public String onLogin() {
 		
-		timer.setTimer(100);
+		//timer.setTimer(100);
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
@@ -88,35 +90,5 @@ public class FormController implements Serializable {
 		return "login.xhtml";
 		
 	}
-	
-	private void insertOrder() {
-		
-		String stmt = "INSERT INTO  testapp.ORDERS(ORDER_NO, PRODUCT_NAME, PRICE, QUANTITY) VALUES('001122334455', 'This was inserted new', 25.00, 100)";
-
-		Connection conn = null;
-		
-		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
-			System.out.println("Success!!");
-			
-			Statement s = conn.createStatement();
-			s.executeUpdate(stmt);
-			s.close();
-			
-		} catch (SQLException e) {
-			
-			System.out.println("Failure!! -- " + e.getMessage());
-		} finally {
-			if(conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}		
-		
-	}
-	
 	
 }
