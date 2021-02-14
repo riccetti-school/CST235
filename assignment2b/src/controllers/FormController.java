@@ -72,14 +72,6 @@ public class FormController implements Serializable {
 		
 		timer.setTimer(100);
 		
-
-		getAllOrders();
-		
-		insertOrder();
-		
-		getAllOrders();
-		
-		
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
 		
@@ -124,42 +116,6 @@ public class FormController implements Serializable {
 			}
 		}		
 		
-	}
-	
-	private void getAllOrders() {
-		
-		Connection conn = null;
-		
-		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
-			System.out.println("Success!!");
-			
-
-			String stmt = "select * from testapp.orders";
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery(stmt);
-			
-			while(rs.next()) {
-				System.out.println(rs.getInt(1) + " " + rs.getString(3) + " " + rs.getFloat(4));
-			}
-			
-			// close them out
-			rs.close();
-			s.close();
-			
-			
-		} catch (SQLException e) {
-			
-			System.out.println("Failure!! -- " + e.getMessage());
-		} finally {
-			if(conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 	
 	

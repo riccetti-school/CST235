@@ -1,7 +1,13 @@
 package beans;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -13,19 +19,40 @@ public class Orders {
 	private List<Order> orders;
 
 	public Orders() {
-		orders = new ArrayList<Order>() {
-			{
-				add(new Order("1A", "Product 1a", 1.0f, 5));
-				add(new Order("2A", "Product 2a", 2.0f, 15));
-				add(new Order("3A", "Product 3a", 3.0f, 51));
-				add(new Order("4A", "Product 4a", 4.0f, 52));
-				add(new Order("5A", "Product 5a", 13.0f, 52));
-				add(new Order("6A", "Product 6a", 12.0f, 51));
-				add(new Order("7A", "Product 7a", 11.0f, 55));
-				add(new Order("8A", "Product 8a", 2.0f, 56));
-				add(new Order("9A", "Product 9a", 1.0f, 57));
+
+		orders = new ArrayList<Order>();
+		
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
+
+			String stmt = "select * from testapp.orders";
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery(stmt);
+			
+			while(rs.next()) {
+				orders.add(new Order(rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getInt(5), rs.getInt(1)));
 			}
-		};
+			
+			// close them out
+			rs.close();
+			s.close();
+			
+			
+		} catch (SQLException e) {
+			
+			System.out.println("Failure!! -- " + e.getMessage());
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+		
 	}
 	
 	public List<Order> getOrders() {

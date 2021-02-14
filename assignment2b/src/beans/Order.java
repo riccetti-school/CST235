@@ -13,17 +13,19 @@ public class Order {
 	private String productName = "";
 	private float price = 0.0f;
 	private int quantity = 0;
+	public int id;
 	
 	
 	public Order() {
 		
 	}
 	
-	public Order(String orderNumber, String productName, float price, int quantity) {
+	public Order(String orderNumber, String productName, float price, int quantity, int id) {
 		this.setOrderNumber(orderNumber);
 		this.setPrice(price);
 		this.setProductName(productName);
 		this.setQuantity(quantity);
+		this.id = id;
 	}
 	
 	public String getOrderNumber() {
