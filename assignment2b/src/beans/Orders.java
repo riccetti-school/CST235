@@ -21,6 +21,10 @@ public class Orders {
 	public Orders() {
 
 		orders = new ArrayList<Order>();
+	}
+
+	public void fillAllOrders() {
+		orders.clear();
 		
 		Connection conn = null;
 		
@@ -56,6 +60,7 @@ public class Orders {
 	}
 	
 	public List<Order> getOrders() {
+		fillAllOrders();
 		return orders;
 	}
 

@@ -47,7 +47,11 @@
 	
 	<h:dataTable value="#{formController.getOrders()}" var="order" class="table">
 		<h:column>
-			<f:facet name="header">ID</f:facet>
+			<f:facet name="header">DBID</f:facet>
+			#{order.id}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Product Number</f:facet>
 			#{order.orderNumber}
 		</h:column>
 		

@@ -13,7 +13,7 @@ public class Order {
 	private String productName = "";
 	private float price = 0.0f;
 	private int quantity = 0;
-	public int id;
+	private int id;
 	
 	
 	public Order() {
@@ -25,7 +25,7 @@ public class Order {
 		this.setPrice(price);
 		this.setProductName(productName);
 		this.setQuantity(quantity);
-		this.id = id;
+		this.setId(id);
 	}
 	
 	public String getOrderNumber() {
@@ -51,6 +51,14 @@ public class Order {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
