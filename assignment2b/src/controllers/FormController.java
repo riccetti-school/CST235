@@ -75,6 +75,10 @@ public class FormController implements Serializable {
 
 		getAllOrders();
 		
+		insertOrder();
+		
+		getAllOrders();
+		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
@@ -90,6 +94,35 @@ public class FormController implements Serializable {
 		
 		
 		return "login.xhtml";
+		
+	}
+	
+	private void insertOrder() {
+		
+		String stmt = "INSERT INTO  testapp.ORDERS(ORDER_NO, PRODUCT_NAME, PRICE, QUANTITY) VALUES('001122334455', 'This was inserted new', 25.00, 100)";
+
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
+			System.out.println("Success!!");
+			
+			Statement s = conn.createStatement();
+			s.executeUpdate(stmt);
+			s.close();
+			
+		} catch (SQLException e) {
+			
+			System.out.println("Failure!! -- " + e.getMessage());
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
 		
 	}
 	
