@@ -1,5 +1,6 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -24,7 +25,7 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
      */
     public OrdersBusinessService() {
         // TODO Auto-generated constructor stub
-    	orders = new Orders().getOrders();
+    	orders = new ArrayList<Order>();
     }
 
 	@Override
@@ -35,8 +36,7 @@ public class OrdersBusinessService implements OrdersBusinessInterface {
 
 	@Override
 	public List<Order> getOrders() {
-		// TODO Auto-generated method stub
-		return orders;
+		return new Orders().getOrders();
 	}
 
 	@Override
