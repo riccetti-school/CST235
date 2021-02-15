@@ -91,6 +91,38 @@ public class FormController implements Serializable {
 		
 	}
 	
+	public String updateName() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
+        int id = Integer.valueOf(context.getExternalContext().getRequestParameterMap().get("id"));
+        String name = context.getExternalContext().getRequestParameterMap().get("name");
+	
+		String stmt = "UPDATE testapp.ORDERS set PRODUCT_NAME='"+name+"' where id=" + id;
+
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Doom-123");
+			
+			Statement s = conn.createStatement();
+			s.execute(stmt);
+			s.close();
+			
+		} catch (SQLException e) {
+		} finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
+		return "TestResponse.xhtml";		
+	}
+	
 	
 	// db
 	public String deleteOrder() {
@@ -98,12 +130,6 @@ public class FormController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
         int id = Integer.valueOf(context.getExternalContext().getRequestParameterMap().get("id"));		
-		
-        System.out.println("ID: " + id);
-        
-		// resend the list
-		List<Order> list = s.getOrders();
-		s.setOrders(list);
 		
 		String stmt = "DELETE FROM testapp.ORDERS where id=" + id;
 

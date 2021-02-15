@@ -80,6 +80,11 @@
 				<h:commandLink id="id_#{order.id}" action="#{formController.deleteOrder()}" value="Delete" onclick="return checkOk(event)">
 					<f:param name="id" value="#{order.id}" />
 				</h:commandLink>
+				|
+				<h:commandLink id="update_#{order.id}" action="#{formController.updateName()}" value="Update Name" onclick="return checkOk(event)">
+					<f:param name="id" value="#{order.id}" />
+					<f:param name="name" value="NAME CHANGED" />
+				</h:commandLink>				
 			</h:column>		
 		</h:dataTable>
 	</h:form>
@@ -91,7 +96,7 @@
    <script type="text/javascript" >
     function checkOk(e) {
 		e.preventDefault();
-        return confirm("Are you sure you want to delete this record?");
+        return confirm("Are you sure?");
     }
    </script>
 
