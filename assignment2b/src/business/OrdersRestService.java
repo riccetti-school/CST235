@@ -8,7 +8,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 
 import beans.Order;
 
@@ -28,6 +30,45 @@ public class OrdersRestService {
 		return s.getOrders();
 	}
 	
+	@GET
+	@Path("/getOrderById")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Order getOrderById(@Context UriInfo info) {
+		String id = info.getQueryParameters().getFirst("id");
+		
+		if(id != null) {
+			int idValue = Integer.valueOf(id);
+			List<Order> orders = s.getOrders();
+			
+			for(Order o: orders) {
+				if(o.getId()==idValue) {
+					return o;
+				}
+			}
+		}
+		
+		return new Order() {};
+	}
+	
+	@GET
+	@Path("/getOrderByName")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Order getOrderByName(@Context UriInfo info) {
+		String name = info.getQueryParameters().getFirst("name");
+		
+		if(name != null) {
+			
+			List<Order> orders = s.getOrders();
+			
+			for(Order o: orders) {
+				if(o.getProductName().equals(name)) {
+					return o;
+				}
+			}
+		}
+		
+		return new Order() {};
+	}	
 	
 	@GET
 	@Path("/getxml")
