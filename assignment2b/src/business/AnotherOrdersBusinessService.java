@@ -50,5 +50,10 @@ public class AnotherOrdersBusinessService implements OrdersBusinessInterface {
 	public void insertOrder(Order order) {
 		new Orders().insertOrder(order);
 	}	
+	
+	@Override
+	public void sendOrder(Order order) {
+		
+	}	
 
 }

@@ -1,13 +1,14 @@
 package beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 @XmlRootElement(name = "Orders")
 public class Order {
 

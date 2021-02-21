@@ -17,4 +17,6 @@ public interface OrdersBusinessInterface {
 	
 	public void insertOrder(Order order);
 	
+	public void sendOrder(Order order);
+	
 }

@@ -91,6 +91,19 @@ public class FormController implements Serializable {
 		
 	}
 	
+	
+	public String onSendOrder() {
+		Order o = new Order();
+		o.setId(200);
+		o.setOrderNumber("AX200");
+		o.setPrice(12f);
+		o.setProductName("Message Product");
+		o.setQuantity(122);
+		s.sendOrder(o);
+		return "TestResponse.xhtml";
+	}
+	
+	
 	public String updateName() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
