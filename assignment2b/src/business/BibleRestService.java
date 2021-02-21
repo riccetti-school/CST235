@@ -59,6 +59,9 @@ public class BibleRestService {
 	@Produces(MediaType.APPLICATION_JSON)		
 	public Object getNumberOfWordOccurance(@Context UriInfo info) {
 		String word = info.getQueryParameters().getFirst("word");
+		if(word == null) {
+			word = "";
+		}
 		int count = countOccurences(phrase, word);
 		return new Object() {
 			public int cnt = count;
