@@ -24,6 +24,15 @@ public class BibleRestService {
 		};
 	}
 	
+	@POST
+	@Path("/postVerse")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Object postVerse() {
+		return new Object() {
+			public String verse = section;
+		};
+	}	
+	
 	@GET
 	@Path("/getWordOccurance")
 	@Produces(MediaType.APPLICATION_JSON)	
