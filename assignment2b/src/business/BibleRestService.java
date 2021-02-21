@@ -16,6 +16,15 @@ public class BibleRestService {
 	private String section = "Revelation 3:20";
 	
 	@GET
+	@Path("/getVerse")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Object getVerse() {
+		return new Object() {
+			public String verse = section;
+		};
+	}
+	
+	@GET
 	@Path("/getWordOccurance")
 	@Produces(MediaType.APPLICATION_JSON)	
 	public Object getWordOccurance(@Context UriInfo info) {
