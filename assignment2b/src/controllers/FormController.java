@@ -1,9 +1,11 @@
 package controllers;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.sql.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +24,7 @@ import business.RegistrationService;
 import services.DataService;
 
 @ManagedBean
+@RolesAllowed({"GcuUser"})
 public class FormController implements Serializable {
 
 
@@ -91,6 +94,33 @@ public class FormController implements Serializable {
 		
 	}
 	
+	
+	public void init() {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
+		
+		// Get the logged in Principle
+		Principal principle= FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+			if(principle == null)
+			{
+				user.setFirstName("Unknown");
+				user.setLastName("");
+			}
+			else
+			{
+				user.setFirstName(principle.getName());
+				user.setLastName("");
+			}
+	}
+	
+	public String onLogoff() {
+		// Invalidate the Session to clear the security token
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			
+		// Redirect to a protected page (so we get a full HTTP Request) to get Login Page
+		return "TestResponse.xhtml?faces-redirect=true";
+	}
 	
 	public String onSendOrder() {
 		Order o = new Order();
